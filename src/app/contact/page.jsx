@@ -138,7 +138,7 @@ export default function Contact() {
                     >
                         <span className="mr-4 text-indigo-600">📧</span>
                         <a href="mailto:your.email@example.com" className="hover:underline">
-                            Email: your.email@example.com
+                            Email: nazmul.hasan16021998@gmail.com
                         </a>
                     </motion.div>
 
@@ -149,9 +149,9 @@ export default function Contact() {
                         transition={{ duration: 1, delay: 4 }}
                     >
                         <span className="mr-4 text-indigo-600">📞</span>
-                        <a href="tel:+1234567890" className="hover:underline">
-                            Phone: +1 (234) 567-890
-                        </a>
+                        <p className="hover:underline">
+                            Phone: 01706256105
+                        </p>
                     </motion.div>
 
                     <motion.div
@@ -161,8 +161,8 @@ export default function Contact() {
                         transition={{ duration: 1, delay: 4.5 }}
                     >
                         <span className="mr-4 text-indigo-600">🔗</span>
-                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" className="hover:underline">
-                            LinkedIn: @yourprofile
+                        <a href="https://www.linkedin.com/in/nazmul-hasan-sunny" target="_blank" className="hover:underline">
+                            LinkedIn: Nazmul Hasan
                         </a>
                     </motion.div>
 
@@ -173,7 +173,7 @@ export default function Contact() {
                         transition={{ duration: 1, delay: 5 }}
                     >
                         <span className="mr-4 text-indigo-600">🌐</span>
-                        <a href="https://yourwebsite.com" target="_blank" className="hover:underline">
+                        <a href="#" target="_blank" className="hover:underline">
                             Website: www.yourwebsite.com
                         </a>
                     </motion.div>

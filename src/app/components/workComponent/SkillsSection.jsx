@@ -7,8 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import MernCard from './workComponentCard/MernCard';
-
-
+import { useState, useEffect } from 'react';
 
 const mernSkills = [
     {
@@ -37,8 +36,18 @@ const mernSkills = [
     },
 ];
 
-
 const SkillsSection = () => {
+    // State to check if the component has mounted
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);  // Set state to true once the component is mounted
+    }, []);
+
+    if (!isClient) {
+        return null;  // Don't render Swiper during SSR
+    }
+
     return (
         <div className="w-full min-h-screen py-20 text-white">
             <motion.div
@@ -65,42 +74,40 @@ const SkillsSection = () => {
                 </motion.p>
             </motion.div>
 
-            <div>
-                <div className='px-16'>
-                    <Swiper
-                        spaceBetween={0}
-                        slidesPerView={3}
-                        loop={true}
-                        autoplay={{
-                            delay: 2000,
-                            disableOnInteraction: false,
-                        }}
-                        modules={[Autoplay, Navigation, Pagination]}
-                        pagination={{
-                            clickable: true,
-                            dynamicBullets: true,
-                        }}
-                        navigation={true}
-                        breakpoints={{
-                            640: {
-                                slidesPerView: 2,
-                            },
-                            768: {
-                                slidesPerView: 2,
-                            },
-                            1024: {
-                                slidesPerView: 3,
-                            },
-                        }}
-                        className="mt-20 sm:px-16"
-                    >
-                        {mernSkills.map((mernSkill, index) => (
-                            <SwiperSlide key={index}>
-                                <MernCard mernSkill={mernSkill} />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
+            <div className="mt-20 px-6 sm:px-16">
+                <Swiper
+                    spaceBetween={10}
+                    slidesPerView={1} 
+                    loop={true}
+                    autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay, Navigation, Pagination]}
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                    }}
+                    navigation={true}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 1,  
+                        },
+                        768: {
+                            slidesPerView: 2,  
+                        },
+                        1024: {
+                            slidesPerView: 3,  
+                        },
+                    }}
+                    className="mt-8"
+                >
+                    {mernSkills.map((mernSkill, index) => (
+                        <SwiperSlide key={index}>
+                            <MernCard mernSkill={mernSkill} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </div>
     );

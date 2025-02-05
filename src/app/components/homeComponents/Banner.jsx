@@ -14,7 +14,7 @@ const Banner = () => {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <img
-                        src="/images/Nazmul.png" 
+                        src="/images/Nazmul.png"
                         alt="nazmul"
                         className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white"
                     />
@@ -75,9 +75,9 @@ const Banner = () => {
             </section>
 
             {/* Full-stack Developer Description */}
-            <div className="flex flex-col justify-center items-center space-y-2">
+            <div className="flex flex-col justify-center items-center space-y-2 text-center">
                 <motion.h1
-                    className="text-10xl sm:text-9xl md:text-9xl font-bold text-white leading-tight font-serif"
+                    className="text-4xl sm:text-5xl md:text-9xl font-bold text-white leading-tight font-serif"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 1 }}
@@ -87,7 +87,7 @@ const Banner = () => {
                         transition: { duration: 0.2, ease: "easeOut" },
                     }}
                 >
-                    <span className="text-white text-xl font-mono"></span> Full-Stack Developer
+                    Full-Stack Developer
                 </motion.h1>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 export default function Footer() {
     return (
@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className="flex justify-center gap-6 mb-6">
                     {/* GitHub */}
                     <a
-                        href="https://github.com"
+                        href="https://github.com/Nazmul-Git"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl hover:text-gray-200 transition-colors"
@@ -23,7 +23,7 @@ export default function Footer() {
 
                     {/* LinkedIn */}
                     <a
-                        href="https://www.linkedin.com"
+                        href="https://www.linkedin.com/in/nazmul-hasan-sunny"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl hover:text-gray-200 transition-colors"
@@ -32,20 +32,9 @@ export default function Footer() {
                         <FaLinkedin />
                     </a>
 
-                    {/* Twitter */}
-                    <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-2xl hover:text-gray-200 transition-colors"
-                        style={{ color: '#1DA1F2' }} 
-                    >
-                        <FaTwitter />
-                    </a>
-
                     {/* Facebook */}
                     <a
-                        href="https://facebook.com"
+                        href="https://www.facebook.com/tahsinahmed.sunny"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl hover:text-gray-200 transition-colors"

@@ -36,9 +36,7 @@ const ProjectCard = ({ project }) => {
                     className="flex items-center text-indigo-400 hover:text-indigo-500 transition duration-300"
                 >
                     <span className="underline">View Repo</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="ml-2 w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 17l4.5-4.5-4.5-4.5M15 12H3" />
-                    </svg>
+                    <span className="ml-2">📂</span> 
                 </Link>
 
                 {/* Live Demo Link */}
@@ -48,9 +46,7 @@ const ProjectCard = ({ project }) => {
                     className="flex items-center text-teal-400 hover:text-teal-500 transition duration-300"
                 >
                     <span className="underline">Live Demo</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="ml-2 w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 12l4.5 4.5-4.5 4.5M19.5 12l-4.5 4.5 4.5 4.5" />
-                    </svg>
+                    <span className="ml-2">🚀</span> 
                 </Link>
             </div>
         </motion.div>
