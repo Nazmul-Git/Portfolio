@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion"; // Importing motion
+import { motion } from "framer-motion";
+import { handleLinkClick } from "@/app/utils/navigationUtils";
 
 const Banner = () => {
     return (
@@ -52,7 +53,8 @@ const Banner = () => {
                     </motion.p>
 
                     <motion.a
-                        href="#projects"
+                        href="/works"
+                        // onClick={handleLinkClick('/works', true)}
                         className="inline-block px-6 py-3 sm:px-8 sm:py-4 text-lg text-white rounded-full shadow-lg transition-transform transform hover:scale-105"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}

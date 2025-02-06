@@ -127,7 +127,7 @@ export default function About() {
       <footer className="text-center mt-12">
         <motion.p className="text-lg text-gray-700">
           📩 Let's connect! Reach out via{' '}
-          <Link href="https://www.linkedin.com/in/yourprofile" target="_blank" className="text-indigo-600 hover:underline">
+          <Link href="https://www.linkedin.com/in/nazmul-hasan-sunny" target="_blank" className="text-indigo-600 hover:underline">
             LinkedIn 🔗
           </Link>
         </motion.p>

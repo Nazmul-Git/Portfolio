@@ -35,9 +35,10 @@ export default function Home() {
       {showScrollUp && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-red-700 p-2 rounded-full shadow-xl transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl hover:rotate-12 focus:outline-none"
+          className="fixed bottom-8 right-8 bg-red-700 p-3 rounded-full shadow-xl transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl hover:rotate-12 focus:outline-none"
+          aria-label="Scroll to top"
         >
-          <FaArrowCircleUp className="text-3xl" />
+          <FaArrowCircleUp className="text-3xl text-white" />
         </button>
       )}
     </div>

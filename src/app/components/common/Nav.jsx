@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { handleLinkClick } from "@/app/utils/navigationUtils";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,12 +14,6 @@ export default function Nav() {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const handleLinkClick = (path) => {
-    if (isClient) {
-      localStorage.setItem("activePath", path);
-    }
-  };
 
   const isActive = (path) => {
     if (!isClient) return "";
@@ -35,7 +30,6 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Change background when scrolling on the page
       if (window.scrollY > 0) {
         setIsScrolled(true);
       } else {
@@ -45,18 +39,30 @@ export default function Nav() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (isClient && router) {
+      const handleRouteChange = (url) => {
+        localStorage.setItem("activePath", url);
+      };
+
+      const handlePathChange = () => {
+        localStorage.setItem("activePath", router.pathname);
+      };
+
+      handlePathChange();
+    }
+  }, [router, isClient]);
 
   return (
     <nav
       className={`sticky top-0 w-full z-50 py-8 transition-all duration-300 ${isScrolled ? "bg-black bg-opacity-95" : "bg-transparent"}`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center">
-        {/* Desktop Navigation Links */}
         <ul className="hidden md:flex space-x-12">
           {["/", "/works", "/services", "/about", "/contact"].map((path, index) => (
             <motion.li
@@ -68,7 +74,7 @@ export default function Nav() {
             >
               <Link
                 href={path}
-                onClick={() => handleLinkClick(path)}
+                onClick={() => handleLinkClick(path, isClient)}  
                 className={`text-sm md:text-lg font-bold ${isActive(path)} hover:text-blue-700 px-2 py-1 transition-all duration-300 ease-in-out`}
               >
                 <motion.span
@@ -78,19 +84,11 @@ export default function Nav() {
                 >
                   {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
                 </motion.span>
-                {/* Shine effect */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-0 group-hover:opacity-50 transition-opacity duration-300 ${isActive(path) ? 'opacity-50' : 'opacity-0'}`}
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.6 }}
-                  transition={{ duration: 0.5 }}
-                />
               </Link>
             </motion.li>
           ))}
         </ul>
 
-        {/* Mobile Hamburger Menu */}
         <button
           onClick={toggleMenu}
           className="md:hidden p-2 text-gray-400 hover:text-gray-200 transition-all duration-900"
@@ -120,7 +118,6 @@ export default function Nav() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <ul className="md:hidden w-full px-6 py-4 space-y-4 text-white">
           {["/", "/works", "/about", "/contact"].map((path, index) => (
@@ -133,7 +130,7 @@ export default function Nav() {
               <Link
                 href={path}
                 onClick={() => {
-                  handleLinkClick(path);
+                  handleLinkClick(path, isClient); // Use the imported function
                   toggleMenu();
                 }}
                 className={`block text-lg font-bold ${isActive(path)} hover:text-gray-200 transition-all duration-300`}

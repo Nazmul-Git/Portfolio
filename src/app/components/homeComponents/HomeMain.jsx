@@ -19,19 +19,26 @@ export default function HomeMain() {
     // Attach scroll event listener
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Disable horizontal overflow
+        document.body.style.overflowX = 'hidden';
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.body.style.overflowX = 'unset'; // Reset the style when the component is unmounted
+        };
     }, []);
 
     return (
-        <>
+        <div className="overflow-x-hidden"> {/* Prevent horizontal overflow */}
             {/* Scroll Progress Bar */}
             <div
-                className="fixed top-0 left-0 z-50 w-full h-1 bg-gradient-to-r from-indigo-500 via-teal-400 to-blue-500"
-                style={{ width: `${scrollProgress}%` }}
+                className="fixed top-0 left-0 z-50 w-full sm:h-1 md:h-2 lg:h-2 bg-gradient-to-r from-indigo-500 via-teal-400 to-red-500"
+                style={{ width: `${scrollProgress}%` }} 
             ></div>
 
+            {/* Background Video */}
             <div className="relative min-h-screen">
-                {/* Background Video */}
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
                     autoPlay
@@ -45,19 +52,29 @@ export default function HomeMain() {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
 
+                {/* Navigation */}
                 <Nav />
 
                 {/* Banner Section */}
-                <div className="relative z-20 flex items-center justify-center min-h-screen px-6 py-10">
+                <div className="relative z-20 flex items-center justify-center min-h-screen px-6 py-10 sm:px-4 md:px-8 lg:px-16">
                     <Banner />
                 </div>
             </div>
-            <div className="relative min-h-screen">
-                {/* Experience Section */}
+
+            {/* Experience Section */}
+            <div className="relative min-h-screen px-6 sm:px-4 md:px-8 lg:px-16">
                 <Experience />
             </div>
-            <Innovation />
-            <SkillAndTools/>
-        </>
+
+            {/* Innovation Section */}
+            <div className="relative py-10 px-6 sm:px-4 md:px-8 lg:px-16">
+                <Innovation />
+            </div>
+
+            {/* Skill and Tools Section */}
+            <div className="relative py-10 px-6 sm:px-4 md:px-8 lg:px-16">
+                <SkillAndTools />
+            </div>
+        </div>
     );
 }
