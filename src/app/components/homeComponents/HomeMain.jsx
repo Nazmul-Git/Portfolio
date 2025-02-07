@@ -34,7 +34,7 @@ export default function HomeMain() {
             {/* Scroll Progress Bar */}
             <div
                 className="fixed top-0 left-0 z-50 w-full sm:h-1 md:h-2 lg:h-2 bg-gradient-to-r from-indigo-500 via-teal-400 to-red-500"
-                style={{ width: `${scrollProgress}%` }} 
+                style={{ width: `${scrollProgress}%` }}
             ></div>
 
             {/* Background Video */}
@@ -50,19 +50,19 @@ export default function HomeMain() {
                 </video>
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
 
                 {/* Navigation */}
                 <Nav />
 
                 {/* Banner Section */}
-                <div className="relative z-20 flex items-center justify-center min-h-screen px-6 py-10 sm:px-4 md:px-8 lg:px-16">
+                <div className="relative z-20 flex items-center justify-center min-h-screen px-6 sm:px-4 md:px-8 lg:px-16">
                     <Banner />
                 </div>
             </div>
 
             {/* Experience Section */}
-            <div className="relative min-h-screen px-6 sm:px-4 md:px-8 lg:px-16">
+            <div className="relative w-full min-h-screen px-0 sm:px-0 md:px-0 lg:px-0">
                 <Experience />
             </div>
 

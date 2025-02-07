@@ -1,15 +1,15 @@
 'use client';
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation"; // Import usePathname from next/navigation
 import { motion } from "framer-motion";
 import { handleLinkClick } from "@/app/utils/navigationUtils";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); 
-  const [isClient, setIsClient] = useState(false); 
-  const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const pathname = usePathname(); // Use usePathname to get the current route
 
   useEffect(() => {
     setIsClient(true);
@@ -17,9 +17,8 @@ export default function Nav() {
 
   const isActive = (path) => {
     if (!isClient) return "";
-    const activePath = localStorage.getItem("activePath") || router.pathname;
-    const normalizePath = (path) => path?.split('?')[0].split('#')[0]; 
-    return normalizePath(activePath) === normalizePath(path)
+    const normalizePath = (path) => path?.split('?')[0].split('#')[0];
+    return normalizePath(pathname) === normalizePath(path)
       ? "text-blue-700 border-b-2 border-green-500"
       : "text-gray-400";
   };
@@ -44,20 +43,6 @@ export default function Nav() {
     };
   }, []);
 
-  useEffect(() => {
-    if (isClient && router) {
-      const handleRouteChange = (url) => {
-        localStorage.setItem("activePath", url);
-      };
-
-      const handlePathChange = () => {
-        localStorage.setItem("activePath", router.pathname);
-      };
-
-      handlePathChange();
-    }
-  }, [router, isClient]);
-
   return (
     <nav
       className={`sticky top-0 w-full z-50 py-8 transition-all duration-300 ${isScrolled ? "bg-black bg-opacity-95" : "bg-transparent"}`}
@@ -74,7 +59,7 @@ export default function Nav() {
             >
               <Link
                 href={path}
-                onClick={() => handleLinkClick(path, isClient)}  
+                onClick={() => handleLinkClick(path, isClient)}
                 className={`text-sm md:text-lg font-bold ${isActive(path)} hover:text-blue-700 px-2 py-1 transition-all duration-300 ease-in-out`}
               >
                 <motion.span
@@ -130,7 +115,7 @@ export default function Nav() {
               <Link
                 href={path}
                 onClick={() => {
-                  handleLinkClick(path, isClient); // Use the imported function
+                  handleLinkClick(path, isClient);
                   toggleMenu();
                 }}
                 className={`block text-lg font-bold ${isActive(path)} hover:text-gray-200 transition-all duration-300`}

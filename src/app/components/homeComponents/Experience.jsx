@@ -6,12 +6,12 @@ export default function Experience() {
   return (
     <div className="w-full min-h-screen px-8 py-16 bg-black text-center text-white font-semibold flex items-center justify-center">
       <motion.div
-        className="max-w-4xl mx-auto"
-        initial={{ opacity: 0, y: 50 }} // Start from slightly below
-        animate={{ opacity: 1, y: 0 }}  // Slide into place
+        className="w-full max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, type: "spring", stiffness: 100, damping: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}  // Triggered when the element comes into view
-        viewport={{ once: true, amount: 0.2 }} // Trigger after 20% of the element is visible
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.h2
           className="text-4xl sm:text-5xl font-extrabold mb-6 text-white"
