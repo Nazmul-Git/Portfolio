@@ -1,40 +1,44 @@
 'use client';
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FiDownload } from "react-icons/fi"; // Using react-icons for the download icon
+import { FiDownload } from "react-icons/fi";
 
 const Banner = () => {
-    // State to control the visibility of the Download Resume button
     const [isVisible, setIsVisible] = useState(false);
-
-    // Create a reference for the download button
     const downloadButtonRef = useRef(null);
 
-    // Function to handle the scroll detection
-    const handleScroll = () => {
-        if (downloadButtonRef.current) {
-            const scrollPosition = window.scrollY + window.innerHeight;
-            const buttonPosition = downloadButtonRef.current.offsetTop;
-
-            // Show button when it's scrolled into view
-            if (scrollPosition > buttonPosition) {
-                setIsVisible(true);
-            }
-        }
-    };
-
-    // Set up event listener on scroll
     useEffect(() => {
+        const handleScroll = () => {
+            if (downloadButtonRef.current) {
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const buttonPosition = downloadButtonRef.current.offsetTop;
+
+                if (scrollPosition > buttonPosition) {
+                    setIsVisible(true);
+                }
+            }
+        };
+
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
+    const letterVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, delay: i * 0.1 },
+        }),
+    };
+
+
     const buttonStyle = {
-        padding: "px-6 py-3", 
-        fontSize: "text-lg", 
-        background: "linear-gradient(to right, #1E90FF 50%, #0000FF 50%)", 
+        padding: "px-6 py-3",
+        fontSize: "text-lg",
+        background: "linear-gradient(to right, #1E90FF 50%, #0000FF 50%)",
         backgroundSize: "200% 100%",
         backgroundPosition: "0 0",
         transition: "background-position 0.6s ease-out",
@@ -43,7 +47,7 @@ const Banner = () => {
     const buttonHoverEffect = {
         scale: 1.1,
         backgroundPosition: "100% 0",
-        transition: { duration: 0.6, ease: "easeInOut" }, 
+        transition: { duration: 0.6, ease: "easeInOut" },
     };
 
     const commonTransition = {
@@ -75,11 +79,7 @@ const Banner = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        whileHover={{
-                            scale: 1.1,
-                            color: "#1E90FF",
-                            transition: { duration: 0.2, ease: "easeIn" },
-                        }}
+                        whileHover={buttonHoverEffect}
                     >
                         Hi, I’m <span className="text-blue-300">Nazmul Hasan</span>
                     </motion.h1>
@@ -89,11 +89,7 @@ const Banner = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.7 }}
-                        whileHover={{
-                            scale: 1.05,
-                            color: "#FFD700",
-                            transition: { duration: 0.2, ease: "easeOut" },
-                        }}
+                        whileHover={{ scale: 1.05, color: "#FFD700", transition: { duration: 0.2, ease: "easeOut" } }}
                     >
                         A passionate software engineer specializing in building modern, full-stack applications
                         with clean, efficient, and scalable solutions.
@@ -124,12 +120,12 @@ const Banner = () => {
                             transition={{ duration: 0.8, ease: "easeIn" }}
                             style={buttonStyle}
                             whileHover={buttonHoverEffect}
-                            ref={downloadButtonRef} 
+                            ref={downloadButtonRef}
                         >
                             {/* Animated Download Icon */}
                             <motion.div
                                 animate={{
-                                    rotate: [0, 25, 0], 
+                                    rotate: [0, 25, 0],
                                 }}
                                 transition={{
                                     repeat: Infinity,
@@ -146,20 +142,65 @@ const Banner = () => {
                 </div>
             </section>
 
-            {/* Full-stack Developer Description */}
-            <div className="flex flex-col justify-center items-center space-y-2 text-center">
+            <div className="flex flex-col justify-center items-center text-center mt-6 lg:mt-0">
                 <motion.h1
-                    className="text-4xl sm:text-5xl md:text-9xl font-bold text-white leading-tight font-serif"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 1 }}
-                    whileHover={{
-                        scale: 1.1,
-                        color: "#FFFFFF",
-                        transition: { duration: 0.2, ease: "easeOut" },
-                    }}
+                    className="text-4xl sm:text-5xl md:text-9xl font-bold text-white leading-tight font-serif flex"
+                    initial="hidden"
+                    animate="visible"
                 >
-                    Full-Stack Developer
+                    {"Full-Stack".split("").map((letter, index) => (
+                        <motion.span
+                            key={index}
+                            custom={index}
+                            initial={{ opacity: 0, x: -50 }} 
+                            animate={{
+                                opacity: 1,
+                                x: 0,
+                                rotate: [0, 5, -5, 0], 
+                                transition: {
+                                    duration: 1.5,
+                                    delay: index * 0.1,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut"
+                                }
+                            }}
+                            whileHover={{ rotateY: 180 }} 
+                            className="inline-block"
+                        >
+                            {letter}
+                        </motion.span>
+                    ))}
+                </motion.h1>
+
+                <motion.h1
+                    className="text-4xl sm:text-5xl md:text-9xl font-bold text-white leading-tight font-serif flex mt-2"
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {"Developer".split("").map((letter, index) => (
+                        <motion.span
+                            key={index}
+                            custom={index}
+                            initial={{ opacity: 0, x: 50 }} 
+                            animate={{
+                                opacity: 1,
+                                x: 0,
+                                rotate: [0, -5, 5, 0], 
+                                transition: {
+                                    duration: 1.5,
+                                    delay: index * 0.1,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut"
+                                }
+                            }}
+                            whileHover={{ rotateY: -180 }} 
+                            className="inline-block"
+                        >
+                            {letter}
+                        </motion.span>
+                    ))}
                 </motion.h1>
             </div>
         </div>

@@ -44,7 +44,6 @@ const services = [
     },
 ];
 
-
 export default function Services() {
     return (
         <div className="w-full min-h-screen py-20 text-white">
@@ -77,10 +76,10 @@ export default function Services() {
                     <motion.div
                         key={index}
                         className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105"
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                     >
                         <div className="text-4xl mb-4 text-indigo-500">{service.icon}</div>
                         <h2 className="text-2xl font-semibold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-teal-400">

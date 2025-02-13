@@ -25,12 +25,12 @@ export default function HomeMain() {
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            document.body.style.overflowX = 'unset'; // Reset the style when the component is unmounted
+            document.body.style.overflowX = 'unset'; 
         };
     }, []);
 
     return (
-        <div className="overflow-x-hidden"> {/* Prevent horizontal overflow */}
+        <div className="overflow-x-hidden bg-black"> 
             {/* Scroll Progress Bar */}
             <div
                 className="fixed top-0 left-0 z-50 w-full sm:h-1 md:h-2 lg:h-2 bg-gradient-to-r from-indigo-500 via-teal-400 to-red-500"

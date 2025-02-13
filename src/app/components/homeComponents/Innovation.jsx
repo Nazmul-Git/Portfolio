@@ -6,7 +6,7 @@ export default function Innovation() {
         {
             title: "Development",
             subtitle: "Collaborative Learning",
-            description: "As a junior software engineer, I bring a fresh perspective and a strong desire to learn and grow alongside your team. \nEnd-to-End Development: With guidance, I am eager to assist in building MERN stack applications, contributing to both the front-end (React) and back-end (Node.js/Express) components. \nPassionate Problem Solver: I'm excited to dive into coding challenges, finding creative solutions, and refining my skills through real-world experience. \nLet's work together to build applications that are both functional and user-friendly, ensuring a great experience for end-users."
+            description: "As a software engineer, I bring a fresh perspective and a strong desire to learn and grow alongside your team. \nEnd-to-End Development: With guidance, I am eager to assist in building MERN stack applications, contributing to both the front-end (React) and back-end (Node.js/Express) components. \nPassionate Problem Solver: I'm excited to dive into coding challenges, finding creative solutions, and refining my skills through real-world experience. \nLet's work together to build applications that are both functional and user-friendly, ensuring a great experience for end-users."
         },
         {
             title: "Mentorship",
@@ -16,12 +16,12 @@ export default function Innovation() {
         {
             title: "Consultations",
             subtitle: "Collaborative Problem Solving",
-            description: "As a junior software engineer, I’m ready to collaborate and consult with teams to help identify problems and suggest potential solutions, especially in MERN stack applications. \nFresh Insights: I bring a beginner's mindset with the ability to approach challenges from a new angle, particularly in working with the full MERN stack. While I'm still learning, I'm dedicated to contributing positively to the project. \nLet's work together to improve your project, whether it's refining existing code or implementing new features in a MERN-based application!"
+            description: "As a software engineer, I’m ready to collaborate and consult with teams to help identify problems and suggest potential solutions, especially in MERN stack applications. \nFresh Insights: I bring a beginner's mindset with the ability to approach challenges from a new angle, particularly in working with the full MERN stack. While I'm still learning, I'm dedicated to contributing positively to the project. \nLet's work together to improve your project, whether it's refining existing code or implementing new features in a MERN-based application!"
         },
         {
             title: "Next-Level Success",
             subtitle: "Growing Your Projects",
-            description: "As a junior developer, I am focused on developing my skills and contributing to your MERN stack projects’ growth. \nPassionate about Progress: I’m committed to continuous improvement and expanding my technical expertise, particularly in MongoDB, Express, React, and Node.js, to help take your projects to the next level. \nTogether, let's create something meaningful while I continue to learn, grow, and develop alongside your team, especially in the MERN ecosystem."
+            description: "As a developer, I am focused on developing my skills and contributing to your MERN stack projects’ growth. \nPassionate about Progress: I’m committed to continuous improvement and expanding my technical expertise, particularly in MongoDB, Express, React, and Node.js, to help take your projects to the next level. \nTogether, let's create something meaningful while I continue to learn, grow, and develop alongside your team, especially in the MERN ecosystem."
         }
     ];
 

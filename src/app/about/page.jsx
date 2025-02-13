@@ -67,8 +67,23 @@ export default function About() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 3.5 }}
         >
-          <li>👨‍💻 <strong className="text-blue-600">Front-End Developer at RSTheme</strong> – Built high-performance websites and web applications.</li>
-          <li>🛠️ <strong className="text-blue-600">Content Moderator at Quantanite</strong> – Ensured quality and compliance in digital content.</li>
+          <li>
+            👨‍💻 <strong className="text-blue-600">Front-End Developer at RSTheme</strong> –
+            Built high-performance websites and web applications using React.js.
+            RSTheme specializes in developing premium themes for the ThemeForest marketplace,
+            focusing on creating responsive, scalable, and user-friendly designs.
+            Collaborated with cross-functional teams to deliver high-quality products and
+            contributed to the continuous improvement of theme features and performance.
+          </li>
+
+          <li>
+            🛠️ <strong className="text-blue-600">Content Moderator at Quantanite</strong> –
+            Ensured quality, accuracy, and compliance in digital content across various platforms.
+            As part of a BPO team, I worked on content moderation, customer support, and
+            process optimization for clients in diverse industries.
+            Ensured that content adhered to guidelines, maintained brand integrity,
+            and upheld community standards.
+          </li>
           <li>📈 Built a full-stack e-commerce platform for a local business that increased their sales by 30%.</li>
           <li>🚀 Led a team of developers to build a high-traffic web application for a tech company.</li>
           <li>🌍 Contributed to several open-source projects aimed at improving developer productivity.</li>
@@ -79,11 +94,11 @@ export default function About() {
       <section className="tech-stack mb-12">
         <motion.h2 className="text-3xl font-semibold text-gray-800 mb-4">My Tech Stack 🛠️</motion.h2>
         <motion.ul className="list-disc pl-6 space-y-2 text-lg text-gray-700">
-          <li>🌐 <strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React, Vue.js, TypeScript, SASS</li>
-          <li>⚙️ <strong>Backend:</strong> Node.js, Express, Python (Flask/Django), Ruby on Rails</li>
-          <li>💾 <strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Firebase</li>
+          <li>🌐 <strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React, Next, Tailwind CSS, SASS</li>
+          <li>⚙️ <strong>Backend:</strong> Node.js, Express.js</li>
+          <li>💾 <strong>Databases:</strong> MySQL, MongoDB, Firebase</li>
           <li>🔗 <strong>Version Control:</strong> Git, GitHub, GitLab</li>
-          <li>☁️ <strong>Cloud/DevOps:</strong> AWS, Docker, Jenkins, Kubernetes</li>
+          <li>☁️ <strong>Cloud/DevOps:</strong> AWS, Docker</li>
           <li>🧪 <strong>Testing:</strong> Jest, Mocha, Cypress, Selenium</li>
         </motion.ul>
       </section>

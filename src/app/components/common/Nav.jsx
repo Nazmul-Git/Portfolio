@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname from next/navigation
+import { usePathname } from "next/navigation"; 
 import { motion } from "framer-motion";
 import { handleLinkClick } from "@/app/utils/navigationUtils";
 
@@ -9,7 +9,7 @@ export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const pathname = usePathname(); // Use usePathname to get the current route
+  const pathname = usePathname(); 
 
   useEffect(() => {
     setIsClient(true);
