@@ -25,16 +25,6 @@ const Banner = () => {
         };
     }, []);
 
-    const letterVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: (i) => ({
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, delay: i * 0.1 },
-        }),
-    };
-
-
     const buttonStyle = {
         padding: "px-6 py-3",
         fontSize: "text-lg",
@@ -72,7 +62,6 @@ const Banner = () => {
                         whileHover={{ scale: 1.09 }} 
                     />
                 </motion.div>
-
 
                 {/* Profile Text */}
                 <div className="text-center lg:text-left space-y-4">
