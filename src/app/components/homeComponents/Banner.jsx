@@ -67,7 +67,7 @@ const Banner = () => {
                     whileHover={{ scale: 1.09 }}  
                 >
                     <img
-                        src="/images/Nazmul.png"
+                        src="/images/Nazmul-hasan.png"
                         alt="nazmul"
                         className="w-64 h-96 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-96 xl:h-96 shadow-2xl transform transition-all duration-500" 
                     />
