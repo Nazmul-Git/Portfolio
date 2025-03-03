@@ -64,11 +64,12 @@ const Banner = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.6 }}
+                    whileHover={{ scale: 1.05 }}  
                 >
                     <img
                         src="/images/Nazmul.png"
                         alt="nazmul"
-                        className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white"
+                        className="w-64 h-96 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-96 xl:h-96 shadow-2xl transform transition-all duration-500" 
                     />
                 </motion.div>
 
@@ -95,7 +96,7 @@ const Banner = () => {
                         with clean, efficient, and scalable solutions.
                     </motion.p>
 
-                    <div className="flex flex-col sm:flex-row gap-4"> {/* Stack buttons on small screens */}
+                    <div className="flex flex-col sm:flex-row gap-4">
                         {/* Explore My Work Button */}
                         <motion.a
                             href="/works"
@@ -152,11 +153,11 @@ const Banner = () => {
                         <motion.span
                             key={index}
                             custom={index}
-                            initial={{ opacity: 0, x: -50 }} 
+                            initial={{ opacity: 0, x: -50 }}
                             animate={{
                                 opacity: 1,
                                 x: 0,
-                                rotate: [0, 5, -5, 0], 
+                                rotate: [0, 5, -5, 0],
                                 transition: {
                                     duration: 1.5,
                                     delay: index * 0.1,
@@ -165,7 +166,7 @@ const Banner = () => {
                                     ease: "easeInOut"
                                 }
                             }}
-                            whileHover={{ rotateY: 180 }} 
+                            whileHover={{ rotateY: 180 }}
                             className="inline-block"
                         >
                             {letter}
@@ -182,11 +183,11 @@ const Banner = () => {
                         <motion.span
                             key={index}
                             custom={index}
-                            initial={{ opacity: 0, x: 50 }} 
+                            initial={{ opacity: 0, x: 50 }}
                             animate={{
                                 opacity: 1,
                                 x: 0,
-                                rotate: [0, -5, 5, 0], 
+                                rotate: [0, -5, 5, 0],
                                 transition: {
                                     duration: 1.5,
                                     delay: index * 0.1,
@@ -195,7 +196,7 @@ const Banner = () => {
                                     ease: "easeInOut"
                                 }
                             }}
-                            whileHover={{ rotateY: -180 }} 
+                            whileHover={{ rotateY: -180 }}
                             className="inline-block"
                         >
                             {letter}
