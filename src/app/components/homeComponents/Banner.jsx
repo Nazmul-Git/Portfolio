@@ -60,18 +60,19 @@ const Banner = () => {
             <section className="container mx-auto sm:px-6 md:px-4 flex flex-col items-center lg:items-start">
                 {/* Profile Image */}
                 <motion.div
-                    className="flex-shrink-0 mb-8 animate-fadeIn "
+                    className="flex-shrink-0 mb-8 animate-fadeIn"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.3 }}
-                    whileHover={{ scale: 1.09 }}  
                 >
-                    <img
+                    <motion.img
                         src="/images/Nazmul-hasan.png"
                         alt="nazmul"
-                        className="w-64 h-96 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-96 xl:h-96 shadow-2xl transform transition-all duration-500" 
+                        className="w-64 h-96 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-96 xl:h-96 shadow-2xl transform transition-all duration-500"
+                        whileHover={{ scale: 1.09 }} 
                     />
                 </motion.div>
+
 
                 {/* Profile Text */}
                 <div className="text-center lg:text-left space-y-4">
