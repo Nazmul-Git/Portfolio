@@ -38,7 +38,7 @@ const Banner = () => {
     const buttonStyle = {
         padding: "px-6 py-3",
         fontSize: "text-lg",
-        background: "linear-gradient(to right, #1E90FF 50%, #0000FF 50%)",
+        background: "linear-gradient(to right, #0000FF 50%, #951400 50%)",
         backgroundSize: "200% 100%",
         backgroundPosition: "0 0",
         transition: "background-position 0.6s ease-out",
@@ -60,11 +60,11 @@ const Banner = () => {
             <section className="container mx-auto sm:px-6 md:px-4 flex flex-col items-center lg:items-start">
                 {/* Profile Image */}
                 <motion.div
-                    className="flex-shrink-0 mb-8 animate-fadeIn"
+                    className="flex-shrink-0 mb-8 animate-fadeIn "
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    whileHover={{ scale: 1.05 }}  
+                    transition={{ duration: 1, delay: 0.3 }}
+                    whileHover={{ scale: 1.09 }}  
                 >
                     <img
                         src="/images/Nazmul.png"
