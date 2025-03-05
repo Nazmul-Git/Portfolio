@@ -174,7 +174,7 @@ export default function Contact() {
                         transition={{ duration: 1, delay: 5 }}
                     >
                         <span className="mr-4 text-indigo-600">🌐</span>
-                        <Link href="/" target="_blank" className="hover:underline">
+                        <Link href="/" className="hover:underline">
                             Website: www.nazmulportfolio.com
                         </Link>
                     </motion.div>
