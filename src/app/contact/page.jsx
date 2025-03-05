@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -173,9 +174,9 @@ export default function Contact() {
                         transition={{ duration: 1, delay: 5 }}
                     >
                         <span className="mr-4 text-indigo-600">🌐</span>
-                        <a href="#" target="_blank" className="hover:underline">
-                            Website: www.yourwebsite.com
-                        </a>
+                        <Link href="/" target="_blank" className="hover:underline">
+                            Website: www.nazmulportfolio.com
+                        </Link>
                     </motion.div>
                 </div>
             </section>
@@ -189,7 +190,7 @@ export default function Contact() {
                     transition={{ duration: 1, delay: 5 }}
                 >
                     You can also connect with me on{' '}
-                    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" className="text-indigo-600 hover:underline">
+                    <a href="https://www.linkedin.com/in/nazmul-hasan-sunny" target="_blank" className="text-indigo-600 hover:underline">
                         LinkedIn
                     </a>.
                 </motion.p>
