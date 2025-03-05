@@ -167,7 +167,7 @@ export default function Contact() {
                         </a>
                     </motion.div>
 
-                    <motion.div
+                    {/* <motion.div
                         className="flex items-center text-lg text-gray-700"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -175,9 +175,9 @@ export default function Contact() {
                     >
                         <span className="mr-4 text-indigo-600">🌐</span>
                         <Link href="/" className="hover:underline">
-                            Website: www.nazmulportfolio.com
+                            Website: N/A
                         </Link>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </section>
 
