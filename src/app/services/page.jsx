@@ -28,11 +28,6 @@ const services = [
         icon: "📊",
     },
     {
-        title: "DevOps & Cloud Services",
-        description: "Implement CI/CD pipelines, manage cloud services (AWS, Heroku, DigitalOcean) to deploy, monitor, and maintain applications efficiently.",
-        icon: "☁️",
-    },
-    {
         title: "Testing & Debugging",
         description: "Ensure robust and bug-free code with unit testing, integration testing, and automated testing using tools like Jest, Mocha, and Cypress.",
         icon: "🧪",

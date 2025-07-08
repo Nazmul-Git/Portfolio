@@ -45,7 +45,7 @@ export default function Nav() {
 
   return (
     <nav
-      className={`sticky top-0 w-full z-50 py-8 transition-all duration-300 ${isScrolled ? "bg-black bg-opacity-95" : "bg-transparent"}`}
+      className={`sticky top-0 w-full z-50 py-4 transition-all duration-300 ${isScrolled ? "bg-black bg-opacity-95" : "bg-transparent"}`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center">
         <ul className="hidden md:flex space-x-12">

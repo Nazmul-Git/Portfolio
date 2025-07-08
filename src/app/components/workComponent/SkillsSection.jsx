@@ -41,11 +41,11 @@ const SkillsSection = () => {
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        setIsClient(true);  // Set state to true once the component is mounted
+        setIsClient(true); 
     }, []);
 
     if (!isClient) {
-        return null;  // Don't render Swiper during SSR
+        return null;  
     }
 
     return (

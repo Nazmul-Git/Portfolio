@@ -1,65 +1,45 @@
 'use client';
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SkillsSection from "../components/workComponent/SkillsSection";
 import ProjectSection from "../components/workComponent/ProjectSection";
 import { PlusCircle, X } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-export default function Projects() {
-    const router = useRouter();
+export default function ProjectsClient({ initialProjects = [] }) {
     const [showForm, setShowForm] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [projects, setProjects] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [projects, setProjects] = useState(initialProjects);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
         techStack: "",
         repoLink: "",
-        liveDemo: ""
+        liveDemo: "",
+        imageUrl: ""
     });
-
-    // Fetch projects data
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const response = await fetch('/api/works');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch projects');
-                }
-                const data = await response.json();
-                setProjects(data);
-            } catch (error) {
-                console.error('Error fetching projects:', error);
-                toast.error('Failed to load projects');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchProjects();
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        try {
-            const payload = {
-                ...formData,
-                techStack: typeof formData.techStack === 'string'
-                    ? formData.techStack
-                    : formData.techStack.join(',') 
-            };
+        // Validate required fields
+        if (!formData.title || !formData.description || !formData.techStack || !formData.repoLink) {
+            toast.error('Please fill all required fields');
+            setIsSubmitting(false);
+            return;
+        }
 
+        try {
             const response = await fetch('/api/works', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({
+                    ...formData,
+                    techStack: formData.techStack.split(',').map(tech => tech.trim()),
+                }),
             });
 
             if (!response.ok) {
@@ -69,17 +49,15 @@ export default function Projects() {
 
             const result = await response.json();
             toast.success('Project added successfully!');
-
-            // Update local state with the new project
-            setProjects(prev => [...prev, result]);
-
-            // Reset form and close modal
+            setProjects(prev => [result, ...prev]);
+            
             setFormData({
                 title: "",
                 description: "",
                 techStack: "",
                 repoLink: "",
-                liveDemo: ""
+                liveDemo: "",
+                imageUrl: ""
             });
             setShowForm(false);
 
@@ -101,7 +79,7 @@ export default function Projects() {
 
     return (
         <div className="w-full min-h-screen py-20 relative overflow-hidden">
-            {/* Floating background elements */}
+            {/* Background elements */}
             <motion.div
                 className="absolute top-1/4 left-10 w-32 h-32 rounded-full bg-teal-400/10 blur-3xl -z-10"
                 animate={{
@@ -302,12 +280,42 @@ export default function Projects() {
                                                 />
                                             </div>
 
+                                            <div>
+                                                <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-300 mb-2">
+                                                    Project Image URL (optional)
+                                                </label>
+                                                <input
+                                                    type="url"
+                                                    id="imageUrl"
+                                                    name="imageUrl"
+                                                    value={formData.imageUrl}
+                                                    onChange={handleChange}
+                                                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                                    placeholder="https://example.com/project-image.jpg"
+                                                    disabled={isSubmitting}
+                                                />
+                                                {formData.imageUrl && (
+                                                    <div className="mt-2">
+                                                        <p className="text-xs text-gray-400">Image Preview:</p>
+                                                        <img 
+                                                            src={formData.imageUrl} 
+                                                            alt="Preview" 
+                                                            className="mt-1 rounded-lg max-h-40 object-cover border border-gray-600"
+                                                            onError={(e) => {
+                                                                e.target.src = 'https://via.placeholder.com/400x225?text=Image+Not+Found';
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+
                                             <div className="pt-3">
                                                 <button
                                                     type="submit"
                                                     disabled={isSubmitting}
-                                                    className={`w-full py-3 px-6 bg-gradient-to-r from-indigo-600 to-teal-600 hover:from-indigo-700 hover:to-teal-700 text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/20 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                                                        }`}
+                                                    className={`w-full py-3 px-6 bg-gradient-to-r from-indigo-600 to-teal-600 hover:from-indigo-700 hover:to-teal-700 text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/20 ${
+                                                        isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                                                    }`}
                                                 >
                                                     {isSubmitting ? (
                                                         'Adding Project...'
@@ -328,7 +336,7 @@ export default function Projects() {
             </AnimatePresence>
 
             {/* Projects Section */}
-            <ProjectSection projects={projects} isLoading={isLoading} />
+            <ProjectSection projects={projects} />
             
             {/* Skills Section */}
             <SkillsSection />
