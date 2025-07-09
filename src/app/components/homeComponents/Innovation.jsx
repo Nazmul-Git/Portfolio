@@ -41,13 +41,14 @@ export default function Innovation() {
 
                 {/* Animated Text */}
                 <motion.h1
-                    className="text-[4rem] sm:text-[8rem] lg:text-[10rem] font-extrabold mb-2 z-10"
+                    className="text-[3rem] sm:text-[8rem] lg:text-[10rem] font-extrabold mb-2 z-10 flex flex-col items-center"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    <span className="text-green-300 text-2xl font-serif">where</span> EXPERTISE
+                    <span className="text-yellow-200 text-2xl font-serif">where</span>
+                    <span>EXPERTISE</span>
                 </motion.h1>
 
                 <motion.h1
@@ -61,7 +62,8 @@ export default function Innovation() {
                 </motion.h1>
 
                 <motion.h1
-                    className="text-6xl sm:text-[8rem] lg:text-[10rem] font-extrabold mb-4 z-10"
+                    className="text-5xl text-red-800 sm:text-[8rem] lg:text-[10rem] font-extrabold mb-4 z-10 
+               [-webkit-text-stroke:2px_white] [text-stroke:2px_white]"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.4 }}

@@ -78,7 +78,9 @@ export default function ProjectsClient({ initialProjects = [] }) {
     };
 
     return (
-        <div className="w-full min-h-screen py-20 relative overflow-hidden">
+        <div 
+            className="w-full bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen py-20 relative overflow-hidden "
+        >
             {/* Background elements */}
             <motion.div
                 className="absolute top-1/4 left-10 w-32 h-32 rounded-full bg-teal-400/10 blur-3xl -z-10"
@@ -119,7 +121,7 @@ export default function ProjectsClient({ initialProjects = [] }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.3 }}
                 >
-                    My Projects
+                    My Projects 
                 </motion.h1>
                 <motion.p
                     className="text-lg sm:text-xl mt-4 text-gray-300"

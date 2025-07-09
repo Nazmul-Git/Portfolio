@@ -58,8 +58,8 @@ const Banner = () => {
                     <motion.img
                         src="/images/Nazmul-hasan.png"
                         alt="nazmul"
-                        className="w-64 h-96 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-96 xl:h-96 shadow-2xl transform transition-all duration-500"
-                        whileHover={{ scale: 1.09 }} 
+                        className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 shadow-2xl transform transition-all duration-500 object-cover"
+                        whileHover={{ scale: 1.09 }}
                     />
                 </motion.div>
 

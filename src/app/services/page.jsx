@@ -29,7 +29,7 @@ const services = [
     },
     {
         title: "Testing & Debugging",
-        description: "Ensure robust and bug-free code with unit testing, integration testing, and automated testing using tools like Jest, Mocha, and Cypress.",
+        description: "Ensure robust and bug-free code with unit testing, integration testing, and automated testing using tools like Jest and Cypress.",
         icon: "🧪",
     },
     {
@@ -41,49 +41,74 @@ const services = [
 
 export default function Services() {
     return (
-        <div className="w-full min-h-screen py-20 text-white">
+        <section className="w-full min-h-screen py-20 px-4 sm:px-8 bg-gradient-to-b from-gray-900 to-gray-800">
+            {/* Header Section */}
             <motion.div
-                className="text-center mb-16 px-6 sm:px-16"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                className="text-center mb-16 max-w-4xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <motion.h1
-                    className="text-4xl sm:text-5xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-teal-400"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
+                    className="text-4xl sm:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-300"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     My Services
                 </motion.h1>
                 <motion.p
-                    className="text-lg sm:text-xl mt-4 text-gray-300"
+                    className="text-lg sm:text-xl text-gray-300 leading-relaxed"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    Explore the services I offer to help you bring your digital ideas to life.
+                    Comprehensive solutions tailored to bring your digital vision to reality with cutting-edge technologies.
                 </motion.p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 sm:px-16">
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {services.map((service, index) => (
                     <motion.div
                         key={index}
-                        className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
+                        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700 hover:border-indigo-400 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ 
+                            duration: 0.6, 
+                            ease: "easeOut",
+                            delay: index * 0.1
+                        }}
+                        whileHover={{ y: -5 }}
                     >
-                        <div className="text-4xl mb-4 text-indigo-500">{service.icon}</div>
-                        <h2 className="text-2xl font-semibold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-teal-400">
+                        <div className="text-5xl mb-6 text-indigo-400">{service.icon}</div>
+                        <h3 className="text-2xl font-semibold mb-3 text-white">
                             {service.title}
-                        </h2>
-                        <p className="mt-2 text-gray-300">{service.description}</p>
+                        </h3>
+                        <p className="text-gray-300 leading-relaxed">
+                            {service.description}
+                        </p>
                     </motion.div>
                 ))}
             </div>
-        </div>
+
+            {/* Optional CTA */}
+            <motion.div
+                className="text-center mt-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+            >
+                <button className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-white font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300">
+                    Get Started
+                </button>
+            </motion.div>
+        </section>
     );
 }

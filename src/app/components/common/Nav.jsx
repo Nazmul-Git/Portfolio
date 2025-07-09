@@ -19,7 +19,7 @@ export default function Nav() {
     if (!isClient) return "";
     const normalizePath = (path) => path?.split('?')[0].split('#')[0];
     return normalizePath(pathname) === normalizePath(path)
-      ? "text-blue-700 border-b-2 border-green-500"
+      ? "text-blue-700 border-b-2 border-green-500 text-green-600"
       : "text-gray-400";
   };
 
@@ -60,7 +60,7 @@ export default function Nav() {
               <Link
                 href={path}
                 onClick={() => handleLinkClick(path, isClient)}
-                className={`text-sm md:text-lg font-bold ${isActive(path)} hover:text-blue-700 px-2 py-1 transition-all duration-300 ease-in-out`}
+                className={`text-sm md:text-lg font-bold ${isActive(path)} hover:text-green-600 px-2 py-1 transition-all duration-300 ease-in-out`}
               >
                 <motion.span
                   className="relative"

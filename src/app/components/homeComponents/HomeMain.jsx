@@ -1,9 +1,11 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 import Experience from './Experience';
 import Nav from '../common/Nav';
 import Innovation from './Innovation';
 import SkillAndTools from './SkillAndTools';
+import ProfessionalExperience from './ProfessionalExperience';
 
 export default function HomeMain() {
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -65,9 +67,13 @@ export default function HomeMain() {
             <div className="relative w-full min-h-screen px-0 sm:px-0 md:px-0 lg:px-0">
                 <Experience />
             </div>
+            {/* Professional Experience Section */}
+            <div className="relative sm:px-4 md:px-8 lg:px-16">
+                <ProfessionalExperience />
+            </div>
 
             {/* Innovation Section */}
-            <div className="relative py-10 px-6 sm:px-4 md:px-8 lg:px-16">
+            <div className="relative py-10 px-2 sm:px-4 md:px-8 lg:px-16">
                 <Innovation />
             </div>
 

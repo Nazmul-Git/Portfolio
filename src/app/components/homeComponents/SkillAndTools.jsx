@@ -1,235 +1,282 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import SkillCard from './componentCard/SkillCard';
+import AddSkillModal from './componentCard/AddSkillModal';
+
+const CATEGORY_LABELS = {
+  frontend: 'Frontend Development',
+  backend: 'Backend Development',
+  database: 'Databases',
+  authentication: 'Authentication',
+  devops: 'DevOps & Cloud',
+  testing: 'Testing',
+  'ui-ux': 'UI/UX Design',
+  mobile: 'Mobile Development',
+  other: 'Other Skills'
+};
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 export default function SkillAndTools() {
-    const skills = [
-        // Front-End Development Skills
-        {
-            name: 'HTML5',
-            logo: 'https://wallpaperaccess.com/full/4868336.jpg',
-            link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
-            color: 'text-orange-600'
-        },
-        {
-            name: 'CSS3',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg',
-            link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-            color: 'text-blue-600'
-        },
-        {
-            name: 'Bootstrap5',
-            logo: 'https://www.eniun.com/wp-content/uploads/imagenes-en-bootstrap-5.png',
-            link: 'https://getbootstrap.com/',
-            color: 'text-info'
-        },
-        {
-            name: 'Tailwind CSS',
-            logo: 'https://d3mxt5v3yxgcsr.cloudfront.net/courses/15177/course_15177_image.jpg',
-            link: 'https://tailwindcss.com/docs',
-            color: 'text-cyan-400'
-        },
-        {
-            name: 'Sass',
-            logo: 'https://silvawebdesigns.com/wp-content/uploads/2020/10/useful-sass-scss-mixins-for-every-website.jpg',
-            link: 'https://sass-lang.com/documentation',
-            color: 'text-pink-600'
-        },
-        {
-            name: 'JavaScript',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
-            link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-            color: 'text-yellow-500'
-        },
-        {
-            name: 'ES6',
-            logo: 'https://i.ytimg.com/vi/iy-fyfePVsQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGHIgaCggMA8=&amp;rs=AOn4CLDV1HE47vDvqOwn7Xt8NaWzpEWSeQ',
-            link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-            color: 'text-yellow-600'
-        },
-        {
-            name: 'DOM',
-            logo: 'https://miro.medium.com/v2/resize:fit:800/1*PEzOBf4AkvDoE4VME4kq4Q.jpeg',
-            link: 'https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model',
-            color: 'text-blue-400'
-        },
-        {
-            name: 'React.js',
-            logo: 'https://reactjs.org/favicon.ico',
-            link: 'https://reactjs.org/docs/',
-            color: 'text-blue-400'
-        },
-        {
-            name: 'React Nested Router',
-            logo: 'https://i.ytimg.com/vi/7p13DSgyMXM/maxresdefault.jpg',
-            link: 'https://reactrouter.com/',
-            color: 'text-indigo-500'
-        },
-        {
-            name: 'Next.js',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg',
-            link: 'https://nextjs.org/docs',
-            color: 'text-green-600'
-        },
-        {
-            name: 'Next-Auth',
-            logo: 'https://i.morioh.com/2024/05/12/8fb6a75b.webp',
-            link: 'https://next-auth.js.org/',
-            color: 'text-pink-500'
-        },
-        {
-            name: 'Redux',
-            logo: 'https://raw.githubusercontent.com/reactjs/redux/24bab8f05987542ffd186c19400a80f12f717492/logo/logo.png',
-            link: 'https://redux.js.org/',
-            color: 'text-purple-700'
-        },
-        {
-            name: 'Material-UI',
-            logo: 'https://mui.com/static/logo.svg',
-            link: 'https://mui.com/',
-            color: 'text-blue-500'
-        },
-        {
-            name: 'Daisy-UI',
-            logo: 'https://daisyui.com/favicon.ico',
-            link: 'https://daisyui.com/',
-            color: 'text-indigo-400'
-        },
+  const [skills, setSkills] = React.useState([]);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [activeCategory, setActiveCategory] = React.useState('all');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
-        // Back-End Development Skills
-        {
-            name: 'Node.js',
-            logo: 'https://mobidev.biz/wp-content/uploads/2020/02/node-js-development-company.png',
-            link: 'https://nodejs.org/en/docs/',
-            color: 'text-green-600'
-        },
-        {
-            name: 'Express.js',
-            logo: 'https://www.dongee.com/tutoriales/content/images/2023/11/image-60.png',
-            link: 'https://expressjs.com/',
-            color: 'text-green-600'
-        },
-        {
-            name: 'Firebase',
-            logo: 'https://res.cloudinary.com/hevo/image/upload/f_auto,q_auto/v1618982001/hevo-learn/image00.png',
-            link: 'https://firebase.google.com/docs',
-            color: 'text-yellow-400'
-        },
-        {
-            name: 'REST APIs',
-            logo: 'https://miro.medium.com/v2/resize:fit:975/1*2_qoU7WhELw4sOT9PuNnLA.png',
-            link: 'https://restfulapi.net/',
-            color: 'text-blue-500'
-        },
-        {
-            name: 'JWT Authentication',
-            logo: 'https://jwt.io/img/pic_logo.svg',
-            link: 'https://jwt.io/',
-            color: 'text-red-700'
-        },
+  // Fetch skills on component mount
+  useEffect(() => {
+    const fetchSkills = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/skills');
+        if (!res.ok) {
+          throw new Error('Failed to fetch skills');
+        }
+        const data = await res.json();
+        setSkills(data);
+      } catch (err) {
+        console.error('Error fetching skills:', err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-        // Database Skills
-        {
-            name: 'MongoDB',
-            logo: 'https://miro.medium.com/v2/resize:fit:1400/1*_yrJns5F3UTHqGQ1J5LFCw.png',
-            link: 'https://www.mongodb.com/docs/',
-            color: 'text-green-700'
-        },
-        {
-            name: 'MySQL',
-            logo: 'https://codigoiot.com/wp-content/uploads/2020/06/mysql-logo_2800x2800_pixels1-1024x1024-1.png',
-            link: 'https://dev.mysql.com/doc/',
-            color: 'text-orange-500'
-        },
+    fetchSkills();
+  }, []);
 
-        // Data Structures & Algorithms Skills
-        {
-            name: 'OOP',
-            logo: 'https://www.educative.io/api/page/4792707659595776/image/download/4893195767906304',
-            link: 'https://en.wikipedia.org/wiki/Object-oriented_programming',
-            color: 'text-purple-600'
-        },
-        {
-            name: 'DSA',
-            logo: 'https://miro.medium.com/v2/da:true/resize:fit:875/0*y8E3QmYSHVSutqaC',
-            link: 'https://en.wikipedia.org/wiki/Data_structure',
-            color: 'text-blue-500'
-        },
-        {
-            name: 'Dynamic Programming',
-            logo: 'https://i.ytimg.com/vi/RUkrflruSks/maxresdefault.jpg',
-            link: 'https://en.wikipedia.org/wiki/Dynamic_programming',
-            color: 'text-orange-600'
-        },
+  // Group skills by category
+  const skillsByCategory = React.useMemo(() => {
+    return skills.reduce((acc, skill) => {
+      const category = skill.category || 'other';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(skill);
+      return acc;
+    }, {});
+  }, [skills]);
 
-        // Version Control & Collaboration
-        {
-            name: 'Git',
-            logo: 'https://miro.medium.com/v2/resize:fit:3840/1*fDwzjCH3qzhosC6DVel4ng.jpeg',
-            link: 'https://git-scm.com/doc',
-            color: 'text-red-600'
-        },
-        {
-            name: 'GitHub',
-            logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-            link: 'https://github.com/',
-            color: 'text-green-800'
-        },
+  // Get unique categories from skills
+  const categories = React.useMemo(() => {
+    const uniqueCategories = [...new Set(skills.map(skill => skill.category || 'other'))];
+    return ['all', ...uniqueCategories].sort();
+  }, [skills]);
 
-        // Cloud & Deployment
-        {
-            name: 'Netlify',
-            logo: 'https://cdn.thenewstack.io/media/2018/03/a6345c70-988825c6-netlifylogo.jpg',
-            link: 'https://www.netlify.com/',
-            color: 'text-cyan-500'
-        },
-        {
-            name: 'Vercel',
-            logo: 'https://vercel.com/favicon.ico',
-            link: 'https://vercel.com/docs',
-            color: 'text-indigo-600'
-        },
+  const handleAddSkill = async (newSkill) => {
+    setIsLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('name', newSkill.name);
+      formData.append('link', newSkill.link);
+      formData.append('category', newSkill.category || 'other');
 
-        // Tools & IDEs
-        {
-            name: 'VS Code',
-            logo: 'https://code.visualstudio.com/favicon.ico',
-            link: 'https://code.visualstudio.com/',
-            color: 'text-blue-500'
-        },
-        {
-            name: 'Postman',
-            logo: 'https://mms.businesswire.com/media/20220915005213/en/761650/23/postman-logo-vert-2018.jpg',
-            link: 'https://www.postman.com/',
-            color: 'text-blue-600'
-        },
-        {
-            name: 'Figma',
-            logo: 'https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/09/15/figma-acquired-by-adobe-adbe_feature.jpg',
-            link: 'https://www.figma.com/resources/learn/',
-            color: 'text-orange-600'
-        },
-    ];
+      if (newSkill.logoFile) {
+        formData.append('logo', newSkill.logoFile);
+      }
 
+      const response = await fetch('/api/skills', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const addedSkill = await response.json();
+        setSkills(prev => [...prev, addedSkill]);
+        setIsModalOpen(false);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to add skill');
+      }
+    } catch (error) {
+      console.error('Error adding skill:', error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (error) {
     return (
-        <div className="mt-10 py-8 px-20">
-            {/* Title and Description Section */}
-            <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-teal-400">
-                    My Skills
-                </h2>
-                <p className="text-lg sm:text-xl mt-4 text-gray-300">
-                    Here are some of the technologies and tools that I am proficient in. I continuously strive to learn and improve my skills in the modern tech stack.
-                </p>
-            </div>
+      <motion.div 
+        className="container mx-auto px-4 py-12 text-center text-red-500"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Error: {error}
+      </motion.div>
+    );
+  }
 
-            {/* Skill Cards Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-                {
-                    skills.map((skill, index) => (
-                        <SkillCard key={index} skill={skill} />
-                    ))
-                }
-            </div>
-        </div>
-    )
+  if (isLoading && skills.length === 0) {
+    return (
+      <motion.div 
+        className="container mx-auto px-4 py-12 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full mx-auto mb-4"
+        />
+        Loading skills...
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="container mx-auto px-4 py-12"
+    >
+      {/* Header Section */}
+      <motion.header 
+        className="text-center mb-12"
+        variants={itemVariants}
+      >
+        <motion.h1
+          className="text-4xl sm:text-5xl font-extrabold mb-6 text-white text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.16, 1, 0.3, 1]
+          }}
+        >
+          My Technical Skills
+        </motion.h1>
+        
+        <motion.p
+          className="text-lg text-gray-300 max-w-2xl mx-auto mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          Technologies and tools I'm proficient with, organized by category.
+        </motion.p>
+
+        <motion.button
+          onClick={() => setIsModalOpen(true)}
+          disabled={isLoading}
+          className="mt-6 px-6 py-3 bg-red-800 hover:bg-red-750 text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-indigo-500/30 disabled:opacity-50"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          variants={itemVariants}
+        >
+          {isLoading ? 'Processing...' : 'Add New Skill +'}
+        </motion.button>
+      </motion.header>
+
+      {/* Category Filter */}
+      <motion.div 
+        className="flex flex-wrap justify-center gap-3 mb-12"
+        variants={containerVariants}
+      >
+        {categories.map(category => (
+          <motion.button
+            key={category}
+            onClick={() => setActiveCategory(category)}
+            className={`px-5 py-2 rounded-full transition-all duration-200 ${
+              activeCategory === category
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            }`}
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {category === 'all' ? 'All Skills' : CATEGORY_LABELS[category] || category}
+          </motion.button>
+        ))}
+      </motion.div>
+
+      {/* Skills Display */}
+      <motion.div 
+        className="space-y-16"
+        variants={containerVariants}
+      >
+        {Object.entries(skillsByCategory)
+          .filter(([category]) => 
+            activeCategory === 'all' || category === activeCategory
+          )
+          .map(([category, categorySkills]) => (
+            <motion.section 
+              key={category} 
+              className="animate-fadeIn"
+              variants={itemVariants}
+            >
+              <motion.h2 
+                className="text-2xl font-semibold mb-6 text-white border-b border-gray-700 pb-2"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {CATEGORY_LABELS[category] || category}
+              </motion.h2>
+              
+              {categorySkills.length > 0 ? (
+                <motion.div 
+                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+                  variants={containerVariants}
+                >
+                  {categorySkills.map((skill) => (
+                    <motion.div
+                      key={skill._id || skill.name}
+                      variants={itemVariants}
+                      whileHover={{ y: -5 }}
+                    >
+                      <SkillCard skill={skill} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.p 
+                  className="text-gray-400"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  No skills in this category
+                </motion.p>
+              )}
+            </motion.section>
+          ))}
+      </motion.div>
+
+      {/* Add Skill Modal */}
+      <AddSkillModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleAddSkill}
+        categories={Object.keys(CATEGORY_LABELS)}
+        isLoading={isLoading}
+      />
+    </motion.div>
+  );
 }

@@ -12,25 +12,25 @@ import { useState, useEffect } from 'react';
 const mernSkills = [
     {
         name: 'MongoDB',
-        logo: 'https://miro.medium.com/v2/resize:fit:1400/1*_yrJns5F3UTHqGQ1J5LFCw.png',
+        logo: 'https://www.knowi.com/wp-content/uploads/2020/01/Blog-1-_-Title-Image.jpg',
         link: 'https://www.mongodb.com/docs/',
         color: 'text-green-700'
     },
     {
         name: 'Express',
-        logo: 'https://www.dongee.com/tutoriales/content/images/2023/11/image-60.png',
+        logo: 'https://1.bp.blogspot.com/-ELwssuPLFbk/WJFW2YWVJnI/AAAAAAAACOU/x3kcoA4XdKknFkrqDoMX1-3EGH_Nz6SUwCLcB/s1600/Express.JPG',
         link: 'https://expressjs.com/',
         color: 'text-black'
     },
     {
         name: 'React',
-        logo: 'https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png',
+        logo: 'https://justwebworld.com/wp-content/uploads/2018/10/reactjs-framework.jpg',
         link: 'https://reactjs.org/docs/',
         color: 'text-blue-400'
     },
     {
         name: 'Node.js',
-        logo: 'https://mobidev.biz/wp-content/uploads/2020/02/node-js-development-company.png',
+        logo: 'https://wallpapercave.com/wp/wp6606918.jpg',
         link: 'https://nodejs.org/en/docs/',
         color: 'text-green-600'
     },

@@ -130,6 +130,10 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'www.thetechbasket.com',
         },
+        {
+          protocol: 'https',
+          hostname: 'i.pinimg.com',
+        },
       ],
     },
 };
